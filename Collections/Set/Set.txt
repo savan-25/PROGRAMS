@@ -1,0 +1,142 @@
+🔷 What is a Set?
+A Set is a Collection that cannot contain duplicate elements.
+
+It's like a mathematical set – each element must be unique.
+
+It is unordered unless using special types like LinkedHashSet or TreeSet.
+
+syntax:
+public interface Set<E> extends Collection<E>
+
+Part of java.util package.
+
+It extends Collection, which means it inherits basic methods like add(), remove(), size(), iterator(), etc.
+
+***** Types of set Implementation ******
+
+| Implementation  | Preserves Order?  | Allows Null? | Sorted?                       | Backed By      |
+| --------------- | ----------------- | ------------ | ----------------------------- | -------------- |
+| `HashSet`       | ❌ No              | ✅ Yes (one)  | ❌ No                          | HashMap        |
+| `LinkedHashSet` | ✅ Yes (Insertion) | ✅ Yes (one)  | ❌ No                          | Linked HashMap |
+| `TreeSet`       | ✅ Yes (Sorted)    | ❌ No         | ✅ Yes (Natural or Comparator) | Red-Black Tree |
+
+
+
+********** Set Interface Hierarchy
+Collection
+   └── Set
+         ├── HashSet
+         ├── LinkedHashSet
+         └── SortedSet (interface)
+               └── NavigableSet (interface)
+                     └── TreeSet
+
+
+ ****************Key Set Methods (inherited from Collection):
+Method	Description
+add(E e)	   Adds element if not already present
+remove(E e)	   Removes the specified element
+contains(E e)	Checks if element exists
+size()	       Number of elements
+isEmpty()	  Checks if the set is empty
+iterator()	   Iterates over elements
+
+
+
+**************⚠️ Important Notes:
+Null values:
+
+HashSet and LinkedHashSet: allow only one null.
+
+TreeSet: does not allow null if natural ordering is used (throws NullPointerException).
+
+Thread-safety: None of them are thread-safe. Use Collections.synchronizedSet() or ConcurrentSkipListSet for concurre
+
+
+
+
+
+*************************** Interview Question ********************
+
+
+1. What is a Set in Java?
+A Set is a Collection that does not allow duplicate elements. It models the mathematical set abstraction and is part of the Java Collection Framework.
+*******
+2. What are the key differences between List and Set?
+Featur            List	                     Set
+Duplicates	   Allowed	                    Not allowed 
+Order	      Maintains insertion order    	Depends on implementation
+Indexing	  Yes (get by index)	        No
+
+****************
+3. Can a Set contain null values?
+Answer:
+Yes, depending on the implementation:
+
+HashSet and LinkedHashSet: allow one null.
+
+TreeSet: does not allow null (throws NullPointerException if using natural ordering).
+**********
+4. Which Set implementation maintains insertion order?
+Answer:
+LinkedHashSet maintains insertion order.
+**********
+5. Which Set implementation provides sorted elements?
+Answer:
+TreeSet sorts elements in natural order or using a custom comparator.
+*****
+6. What is the time complexity of basic operations in HashSet?
+Answer:
+
+add(), remove(), contains() → O(1) average time (constant), O(n) worst-case (hash collisions).
+*****
+7. How does HashSet ensure uniqueness of elements?
+Internally, HashSet uses a HashMap where:
+
+Keys = Set elements
+
+Value = a constant dummy object (e.g., PRESENT)
+
+Uniqueness is ensured by comparing hash codes and using equals()
+**********
+8. What happens when you add a duplicate element to a Set?
+
+The Set will ignore the duplicate and return false from the add() method.
+*****
+9. What is the difference between HashSet and TreeSet?
+Feature	HashSet	TreeSet
+Order	Unordered	Sorted order
+Nulls	Allows 1 null	Doesn’t allow null
+Performance	Faster (O(1))	Slower (O(log n))
+Backed By	HashMap	Red-Black Tree
+
+***********
+10. How does TreeSet work internally?
+Answer:
+TreeSet uses a Red-Black Tree, a type of self-balancing binary search tree, and relies on natural ordering (Comparable) or a provided Comparator.
+
+*********
+11. How to remove duplicates from a list using Set?
+java
+Copy code
+List<Integer> list = Arrays.asList(1, 2, 2, 3, 4, 4, 5);
+Set<Integer> set = new HashSet<>(list);
+System.out.println(set); // [1, 2, 3, 4, 5]
+
+
+*******
+12. What happens if you mutate an object stored in a HashSet?
+Answer:
+If the object's fields that affect equals() and hashCode() change after insertion, it may:
+
+Break the Set's behavior
+
+Make the object "invisible" to lookup (contains() may return false)
+
+⚠️ Never mutate objects used in Sets based on hashing.
+
+13.how to make set thread safe:
+using collisions.synchronizedSet
+
+Set<Integer> sync = Collection.synchronizedSet(new HashSet<>()); 
+

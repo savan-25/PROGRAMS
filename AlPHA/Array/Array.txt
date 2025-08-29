@@ -1,0 +1,95 @@
+import java.util.ArrayList;
+class Base
+{
+  public int Largest(int Arr[])
+  {
+    int iMax = Arr[0];
+
+    for( int iCnt = 0;iCnt<Arr.length;iCnt++)
+    {
+      if( Arr[iCnt] > iMax)
+      {
+        iMax = Arr[iCnt];
+      }
+    }
+    return iMax;
+  }
+  public int SecondMax(int Arr[])
+  {
+    int iMax = Integer.MIN_VALUE;
+    int SecMax = Integer.MIN_VALUE;
+
+    for( int i = 0;i<Arr.length;i++)
+    {
+        if(Arr[i] > iMax) 
+        {  
+          SecMax = iMax;
+           iMax = Arr[i];
+        }else if( Arr[i] > SecMax)
+        {
+          SecMax = Arr[i];
+        }
+    }
+    return SecMax;
+  }
+  public boolean Check(int Arr[])
+  {
+    boolean increasing = false;
+    boolean decreasing = false;
+
+    for(int i =0;i<Arr.length-1;i++)
+    {
+      if( Arr[i] < Arr[i+1])
+      {
+        increasing = true;
+      }else if(Arr[i] > Arr[i+1])
+      {
+        decreasing = true;
+      }
+    }
+    if( increasing == true && decreasing == true)
+    {
+      return false;
+    }
+    else 
+    {
+      return true;
+    }
+  }
+   // This function for Removing Duplicate element from array and count legth of new array
+
+   public int RemoveDuplicate(int arr[])
+   {
+     int i = 0;
+
+     for(int j = 1;j<arr.length;j++)
+     {
+        if( arr[j] != arr[i])
+        {
+          i++;
+          arr[i] = arr[j];
+        }
+     }
+     return i+1;
+   }
+   public void Moveleft(int )
+   
+}
+class Practice
+{
+  public static void main(String args[])
+  {
+     int arr[] = {1,2,33,33,4};
+
+     Base bobj = new Base();
+    int newlength =  bobj.RemoveDuplicate(arr);
+
+    System.out.println("After Removing the Duplicate node lenght of array is :"+newlength);
+
+    for(int i = 0;i<newlength;i++)
+    {
+      System.out.println(arr[i]+ " ");
+    }
+
+  }
+}

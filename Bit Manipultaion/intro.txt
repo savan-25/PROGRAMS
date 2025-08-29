@@ -1,0 +1,14 @@
+    Operator - opertor is a Symbol that is used to 
+    perform operation according to user requirement 
+
+
+Bitwise Operator
+and &
+or |
+xor ^
+not ~ 
+leftshift <<
+rigthshift >> 
+unsigned rigthshift >>>
+
+
